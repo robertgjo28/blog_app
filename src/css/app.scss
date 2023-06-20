@@ -1,0 +1,160 @@
+// app global css in SCSS form
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+// Global Variables
+$font-family: 'Nunito', sans-serif;
+$base-color: #afc2d4;
+$base-background-color: #071422;
+$base-span: #7b96b2;
+$base-label: #3a536b;
+$base-border: #1c2f41;
+$base-background-post: #112131;
+$base-input: #040f1a;
+$base-subtitle: #c4d4e3;
+$base-title: #e7edf4;
+
+$font-sizes: (
+  small: 12px,
+  medium: 14px,
+  large: 16px,
+  x-large: 18px,
+  xx-large: 20px,
+  super-large: 24px,
+);
+
+// Global Styles
+body {
+  color: $base-color;
+  background-color: $base-background-color;
+  font-family: $font-family;
+  line-height: 160% !important;
+}
+
+span {
+  color: $base-span;
+}
+
+a {
+  text-decoration: none;
+  font-size: 16px;
+}
+
+label {
+  color: $base-label;
+}
+
+input {
+  background-color: $base-input;
+  color: $base-color !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 !important;
+  color: $base-title;
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
+
+button:disabled {
+  background-color: #c4d4e3 !important;
+  // make the font color base border
+  color: $base-border !important;
+}
+
+.subtitle {
+  color: $base-subtitle;
+}
+
+@each $size, $value in $font-sizes {
+  .font-#{$size} {
+    font-size: $value;
+  }
+}
+
+// Classes
+.header__img {
+  width: 100%;
+  height: calc(300px + 1vw);
+  background: url('../assets/img/header.jpg') no-repeat center center;
+
+  & {
+    -webkit-background-size: cover;
+    background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+  }
+}
+
+.post {
+  background-color: $base-background-post;
+  border: 1px solid $base-border;
+  padding: 20px;
+  margin-bottom: 20px;
+  min-height: 325px;
+}
+
+.modal__post {
+  background-color: $base-background-post;
+  border: 1px solid $base-border;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.post__button,
+.post__edit {
+  padding: 10px 20px !important;
+}
+
+.q-field--dense .q-field__control {
+  height: 50px;
+}
+
+main_container__height {
+  min-height: 100vh;
+}
+
+// make the button 80% width and center it
+.post__create {
+  width: 50%;
+  margin: 0 auto;
+  padding: 25px !important;
+  font-size: 18px;
+}
+
+.modal__create__post {
+  background-color: $base-background-post;
+  border: 1px solid $base-border;
+  width: 50%;
+  margin: 0 auto;
+  padding: 50px 25px !important;
+  font-size: 18px;
+
+  input,
+  textarea {
+    background-color: $base-input;
+    color: $base-color !important;
+  }
+}
+
+.min__height__postbody {
+  overflow-wrap: break-word;
+  min-height: 125px;
+}
+.min__height__postheader {
+  overflow-wrap: break-word;
+  min-height: 120px;
+}
+
+.postview__header__title {
+  overflow-wrap: break-word;
+}
+
+.postview__body {
+  overflow-wrap: break-word;
+}
