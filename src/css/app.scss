@@ -143,18 +143,14 @@ main_container__height {
 }
 
 .min__height__postbody {
-  overflow-wrap: break-word;
   min-height: 125px;
 }
 .min__height__postheader {
-  overflow-wrap: break-word;
   min-height: 120px;
 }
-
-.postview__header__title {
-  overflow-wrap: break-word;
-}
-
+.min__height__postbody,
+.min__height__postheader,
+.postview__header__title,
 .postview__body {
   overflow-wrap: break-word;
 }
