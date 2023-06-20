@@ -2,20 +2,24 @@
   <q-dialog persistent>
     <q-card class="modal__create__post">
       <q-card-section class="row items-center">
-        <span class="q-ml-sm"
-          >Create the post with the desired informations</span
-        >
-        <span class="font-small q-mt-sm">
-          Please ensure that the post is well-structured, engaging, and provides
-          valuable insights to the readers. Additionally, make sure to proofread
-          the post for any grammatical or spelling errors before publishing it.
-          Thank you for your attention to detail and dedication in delivering
-          high-quality content to our readers.
-        </span>
+        <div class="col-12">
+          <span class="q-ml-sm"
+            >Update the post with the desired informations</span
+          >
+        </div>
+        <div class="col-12 q-py-sm">
+          <span class="font-small q-mt-sm">
+            Please ensure that the post is well-structured, engaging, and
+            provides valuable insights to the readers. Additionally, make sure
+            to proofread the post for any grammatical or spelling errors before
+            publishing it. Thank you for your attention to detail and dedication
+            in delivering high-quality content to our readers.
+          </span>
+        </div>
       </q-card-section>
 
       <q-card-section class="row justify-center">
-        <div class="col-md-12">
+        <div class="col-12">
           <q-input
             v-model="title"
             type="text"
@@ -23,7 +27,7 @@
             :rules="titleRules"
           />
         </div>
-        <div class="col-md-12">
+        <div class="col-12">
           <q-input
             v-model="textField"
             type="textarea"
@@ -33,8 +37,13 @@
         </div>
       </q-card-section>
 
-      <q-card-actions align="right">
-        <q-btn color="primary post__button" @click="updatePost" v-close-popup>
+      <q-card-actions align="center">
+        <q-btn
+          color="primary post__button"
+          @click="updatePost"
+          :disable="isButtonDisabled"
+          v-close-popup
+        >
           <span class="text-white">Update Post</span></q-btn
         >
         <q-btn
@@ -75,11 +84,25 @@ const titleRules = computed(() => [
 
 const textFieldRules = computed(() => [
   (v) => !!v || 'Information is required',
+  (v) => (v && v.length >= 10) || 'Information must be more than 10 characters',
   (v) =>
     (v && v.length <= 200) || 'Information must be less than 200 characters',
 ]);
 
-// make updatePost function
+const isButtonDisabled = computed(() => {
+  const titleValidationResults = titleRules.value.map((rule) =>
+    rule(title.value)
+  );
+  const textFieldValidationResults = textFieldRules.value.map((rule) =>
+    rule(textField.value)
+  );
+  const validationResults = [
+    ...titleValidationResults,
+    ...textFieldValidationResults,
+  ];
+  return validationResults.some((result) => typeof result === 'string');
+});
+
 const updatePost = () => {
   const { user, ...updatedPost } = {
     title: title.value,

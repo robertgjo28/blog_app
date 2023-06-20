@@ -130,7 +130,6 @@ main_container__height {
 .modal__create__post {
   background-color: $base-background-post;
   border: 1px solid $base-border;
-  width: 50%;
   margin: 0 auto;
   padding: 50px 25px !important;
   font-size: 18px;
@@ -139,6 +138,7 @@ main_container__height {
   textarea {
     background-color: $base-input;
     color: $base-color !important;
+    padding: 25px !important;
   }
 }
 
@@ -153,4 +153,15 @@ main_container__height {
 .postview__header__title,
 .postview__body {
   overflow-wrap: break-word;
+}
+
+.q-dialog__inner--minimized > div {
+  max-width: 800px !important;
+}
+
+// media query for tablet and below
+@media (max-width: 768px) {
+  .modal__create__post input, .modal__create__post textarea {
+    width: 300px;
+  }
 }

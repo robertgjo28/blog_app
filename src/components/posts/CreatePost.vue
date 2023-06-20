@@ -45,7 +45,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import createPostModal from '../modals/createPostModal.vue';
+import createPostModal from '../modals/CreatePostModal.vue';
 
 const showCreateModal = ref(false);
 

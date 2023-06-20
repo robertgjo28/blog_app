@@ -33,8 +33,13 @@
         </div>
       </q-card-section>
 
-      <q-card-actions align="right">
-        <q-btn color="primary post__button" @click="createPost" v-close-popup>
+      <q-card-actions align="center">
+        <q-btn
+          color="primary post__button"
+          @click="createPost"
+          :disable="isButtonDisabled"
+          v-close-popup
+        >
           <span class="text-white">Create Post</span></q-btn
         >
         <q-btn
@@ -63,9 +68,24 @@ const titleRules = computed(() => [
 
 const textFieldRules = computed(() => [
   (v) => !!v || 'Information is required',
+  (v) => (v && v.length >= 10) || 'Information must be more than 10 characters',
   (v) =>
     (v && v.length <= 200) || 'Information must be less than 200 characters',
 ]);
+
+const isButtonDisabled = computed(() => {
+  const titleValidationResults = titleRules.value.map((rule) =>
+    rule(title.value)
+  );
+  const textFieldValidationResults = textFieldRules.value.map((rule) =>
+    rule(textField.value)
+  );
+  const validationResults = [
+    ...titleValidationResults,
+    ...textFieldValidationResults,
+  ];
+  return validationResults.some((result) => typeof result === 'string');
+});
 
 const createPost = () => {
   const post = {
