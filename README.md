@@ -1,6 +1,6 @@
-# Metricalo Blog (metricalo)
+# Blog Application
 
-Metricalo CRUD Blog Application
+CRUD Blog Application
 
 ## Install the dependencies
 ```bash
